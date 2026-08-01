@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import ProductDetail from "./pages/ProductDetail";
 import RutaProtegida from "./components/RutaProtegida";
 
 function App() {
@@ -21,6 +22,15 @@ function App() {
         element={
           <RutaProtegida>
             <Home />
+          </RutaProtegida>
+        }
+      />
+
+      <Route
+        path="/product/:id"
+        element={
+          <RutaProtegida>
+            <ProductDetail />
           </RutaProtegida>
         }
       />
