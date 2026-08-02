@@ -62,11 +62,11 @@ export default function ProductDetail() {
 
     if (loading)
 
-        return <div className="container py-5 text-center"><div className="spinner-border text-primary" role="status"></div><p className="mt-3">Cargando producto...</p></div>;
+        return <h3 className="text-center mt-5">Cargando...</h3>;
 
     if (error)
 
-        return <div className="container py-5"><div className="alert alert-danger text-center">{error}</div></div>;
+        return <h3 className="text-danger text-center">{error}</h3>;
 
     return (
 
@@ -74,71 +74,60 @@ export default function ProductDetail() {
 
             <Navbar />
 
-            <div className="container py-4">
+            <div className="container mt-5">
 
-                <div className="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div className="row">
 
-                    <div className="row g-0">
+                    <div className="col-md-5">
 
-                        <div className="col-lg-5">
+                        <img
 
-                            <img
+                            src={product.thumbnail}
 
-                                src={product.thumbnail}
+                            className="img-fluid rounded"
 
-                                className="img-fluid h-100 w-100"
-                                style={{ objectFit: "cover", minHeight: "320px" }}
+                            alt={product.title}
 
-                                alt={product.title}
+                        />
 
-                            />
+                    </div>
 
-                        </div>
+                    <div className="col-md-7">
 
-                        <div className="col-lg-7 p-4 p-lg-5">
+                        <h2>{product.title}</h2>
 
-                            <div className="d-flex flex-wrap align-items-center gap-2 mb-3">
-                                <span className="badge bg-primary rounded-pill">
-                                    <i className="bi bi-tag-fill me-1"></i>
-                                    {product.category}
-                                </span>
-                                <span className="badge bg-success rounded-pill">
-                                    <i className="bi bi-box-seam me-1"></i>
-                                    {product.stock} disponibles
-                                </span>
-                            </div>
+                        <p>{product.description}</p>
 
-                            <h2 className="fw-bold mb-3">{product.title}</h2>
-                            <p className="text-muted mb-4">{product.description}</p>
+                        <h3 className="text-success">
 
-                            <h3 className="text-success fw-bold mb-4">${product.price}</h3>
+                            ${product.price}
 
-                            <button
-                                className="btn btn-success btn-lg"
-                                onClick={handleOrder}
-                            >
-                                <i className="bi bi-cart-plus me-2"></i>
-                                Agregar al pedido
-                            </button>
+                        </h3>
 
-                            <hr className="my-4" />
+                        <button
+                            className="btn btn-success mt-3"
+                            onClick={handleOrder}
+                        >
+                            Agregar al pedido
+                        </button>
 
-                            <div className="row g-3">
-                                <div className="col-md-6">
-                                    <div className="p-3 rounded-3 bg-light">
-                                        <small className="text-muted d-block">Marca</small>
-                                        <strong>{product.brand}</strong>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="p-3 rounded-3 bg-light">
-                                        <small className="text-muted d-block">Categoría</small>
-                                        <strong>{product.category}</strong>
-                                    </div>
-                                </div>
-                            </div>
+                        <p>
 
-                        </div>
+                            <strong>Marca:</strong> {product.brand}
+
+                        </p>
+
+                        <p>
+
+                            <strong>Categoría:</strong> {product.category}
+
+                        </p>
+
+                        <p>
+
+                            <strong>Stock:</strong> {product.stock}
+
+                        </p>
 
                     </div>
 
@@ -149,5 +138,4 @@ export default function ProductDetail() {
         </>
 
     );
-
 }
